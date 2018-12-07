@@ -1,0 +1,32 @@
+<script>
+    //通过设置私有变量，防止被全局污染
+    function TestModule () {
+
+        var counter = 0;
+
+        return {
+
+            incrementCounter: function () {
+                return counter++;
+            },
+
+            resetCounter: function () {
+                console.log("counter value prior to reset: " + counter);
+                counter = 0;
+            }
+        };
+
+    }
+
+
+    var testModule = TestModule()
+    console.log(testModule.counter) //undefine 外面访问不到私有的counter
+    // Usage:
+
+    // Increment our counter
+    testModule.incrementCounter();
+
+    // Check the counter value and reset
+    // Outputs: 1
+    testModule.resetCounter();
+</script>

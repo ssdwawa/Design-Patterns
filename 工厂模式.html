@@ -1,0 +1,59 @@
+// 有多个待实例化的类(汽车,卡车....)，为了统一管理他们，我们统一定义一个工厂接口进行管理
+// 现在只要向这个接口传递对象参数即可生成不同的实例 例子：react的不同生成元素
+<script>
+    // A constructor for defining new cars
+    function Car(options) {
+        // some defaults
+        this.doors = options.doors || 4;
+        this.state = options.state || "brand new";
+        this.color = options.color || "silver";
+
+    }
+
+    // A constructor for defining new trucks
+    function Truck(options) {
+
+        this.state = options.state || "used";
+        this.wheelSize = options.wheelSize || "large";
+        this.color = options.color || "blue";
+    }
+
+    // FactoryExample.js
+
+    // Define a skeleton vehicle factory
+    function VehicleFactory() {}
+
+    // Define the prototypes and utilities for this factory
+
+    // Our default vehicleClass is Car
+    VehicleFactory.prototype.vehicleClass = Car;
+
+    // Our Factory method for creating new Vehicle instances
+    VehicleFactory.prototype.createVehicle = function (options) {
+
+        if (options.vehicleType === "car") {
+            this.vehicleClass = Car;
+        } else {
+            this.vehicleClass = Truck;
+        }
+
+        return new this.vehicleClass(options);
+
+    };
+
+    // Create an instance of our factory that makes cars
+    var carFactory = new VehicleFactory();
+    var car = carFactory.createVehicle({
+        vehicleType: "car",
+        color: "yellow",
+        doors: 6
+    });
+
+    // Test to confirm our car was created using the vehicleClass/prototype Car
+
+    // Outputs: true
+    console.log(car instanceof Car);
+
+    // Outputs: Car object of color "yellow", doors: 6 in a "brand new" state
+    console.log(car);
+</script>

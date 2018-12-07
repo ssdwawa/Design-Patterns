@@ -1,0 +1,74 @@
+<script>
+    //每个类只有一个实例，后续不管怎么实例化都是他。
+    // var test = (function(){
+    //     var instance =null;
+
+    //     var num = Math.random()
+
+    //     return {
+    //         getInstance : function(){
+    //             if(!instance){
+    //                 instance = num
+    //             }
+
+    //             return num
+    //         }
+    //     }
+    // }())
+
+
+    // var testA = test.getInstance()
+    // var testB = test.getInstance()
+
+    // console.log(testA)
+    // console.log(testB)
+
+
+    //代理单例
+
+    // var doSome = {
+    //     init: () => {
+    //         var num = Math.random()
+    //         console.log('is init' + ' ' + num)
+    //         return num
+    //     }
+    // }
+
+    // var proxy = {
+    //     instance: null,
+    //     init: () => {
+    //         if (!this.instance) {
+    //             this.instance = doSome.init()
+    //         }
+    //         console.log(this.instance)
+    //         return this.instance
+    //     }
+    // }
+
+    // var testA = proxy.init()
+    // var testB = proxy.init()
+    // console.log(testA, testB)
+
+    // var duo = {
+    //     init: () => {
+    //         alert(888)
+    //     }
+    // }
+
+    // var onclick = (function () {
+    //     var instance = null
+    //     return {
+    //         init : () => {
+    //             if (!this.instance) {
+    //                 this.instance = duo.init()
+    //             }
+    //             return this.instance
+    //         }
+    //     }
+
+    // }())
+
+    // onclick.init()
+
+    
+</script>

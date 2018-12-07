@@ -1,0 +1,30 @@
+<script>
+    class EventEmitter {
+        /* TODO */
+        constructor() {
+            this.subList = {} //发布者
+        }
+
+        on(eventName, func) {
+            if (!this.subList[eventName]) {
+                this.subList[eventName] = [] //是否有该订阅者，如果没有则添加
+            }
+            this.subList[eventName].push(func) //向订阅者列表添加回掉函数
+        }
+
+        emit(eventName, ...args) {
+            var fns = this.subList[eventName]
+            if (!fns) return //如果没有该订阅者，返回函数
+            fns.map(cd => { //存在该订阅者时，遍历列表触发回掉函数
+                cd(...args)
+            })
+        }
+
+        off(eventName, func) {
+            var fns = this.subList[eventName]
+            if (!fns || fns.length == 0) return
+            var index = fns.indexOf(func)
+            fns.splice(index, 1) //将该事件从订阅者列表中删除
+        }
+    }
+</script>

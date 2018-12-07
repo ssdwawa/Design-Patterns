@@ -1,0 +1,57 @@
+<script>
+    //1.基础-原型继承(模式)
+    var person = {
+        age: '18'
+    }
+    var driver = Object.create(person);
+    console.log(driver.age) //18
+
+    //_proto_是对象和对象构造器原型之间的纽带
+
+    //es6 class
+    class Animal {
+        constructor(name) {
+            this.name = name
+        }
+
+        getName() {
+            console.log(`my name is ${this.name}`)
+        }
+
+    }
+
+    class Dog extends Animal {
+        constructor(age, ...args) {
+            super(...args);
+            this.age = age
+        }
+
+        speak() {
+            super.getName()
+            console.log(`${this.name} say get it , age is ${this.age}`)
+        }
+    }
+
+    var dog = new Dog(1, 'diandian')
+    dog.speak()
+
+    //原型模式
+    function Car(model, year, miles) {
+        this.model = model;
+        this.year = year;
+        this.miles = miles;
+    }
+
+    // Object.prototype ，以避免我们重新定义原型对象
+    Car.prototype.toString = function () {
+        return this.model + " has done " + this.miles + " miles";
+    };
+
+    // 使用:
+
+    var civic = new Car("Honda Civic", 2009, 20000);
+    var mondeo = new Car("Ford Mondeo", 2010, 5000);
+
+    console.log(civic.toString());
+    console.log(mondeo.toString());
+</script>
